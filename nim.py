@@ -78,8 +78,8 @@ def lancer_partie(ia_joueur_2):
     cacher_menu()
 
     # Pose les questions
-    gagnant_dernier = reponse_oui_non("Le gagnant est-il celui qui prend la dernière allumette ?")
-    nombre_allumettes = reponse_entier("Avec combien d'allumettes voulez-vous jouer ?", 1, 100)
+    gagnant_dernier = reponse_oui_non("Le gagnant est-il celui qui prend la dernière allumette ? ")
+    nombre_allumettes = reponse_entier("Avec combien d'allumettes voulez-vous jouer ? ", 1, 100)
 
     # Lancement de la partie
     partie(nombre_allumettes, gagnant_dernier, ia_joueur_2)
@@ -99,27 +99,27 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
     :type ia_joueur_2: bool.
     """
 
-    tour_j1 = reponse_oui_non("Voulez-vous jouer en premier")
-    gagnant = "Personne"
+    tour_j1 = reponse_oui_non("Voulez-vous jouer en premier ? ") #Je renseigne dans une variable le joueur qui commencera à jouer.
+    gagnant = "Personne" #Je créer une variable pour renseigner le nom du gagnant.
 
     afficher_jeu(nombre_allumettes)
     
-    if not tour_j1:
+    if not tour_j1: #Si on ne joue pas en premier, et que l'on joue contre une IA, le nombre d'allumettes est diminué de l'entier sortie de prise_ia
         if ia_joueur_2:
             sleep(randint(1, 2))
             nombre_allumettes -= prise_ia(nombre_allumettes, gagnant_dernier)
-        else:
-            nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre? ", 1, 3)
+        else: #Si on joue contre une humain, on pose la question au joueur 2, et le nombre d'allumettes est diminué de l'entier choisi
+            nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre ? ", 1, 3)
         afficher_jeu(nombre_allumettes)
 
     while True:
         #Tour du joueur 1
-        nombre_allumettes -= reponse_entier("Joueur 1 : Combien d'allumettes voulez-vous prendre? ", 1, 3)
+        nombre_allumettes -= reponse_entier("Joueur 1 : Combien d'allumettes voulez-vous prendre ? ", 1, 3) #On pose la question au joueur 1, et le nb d'allumette est diminué
         afficher_jeu(nombre_allumettes)
         
         #Vérifie si J1 a gagner
         if nombre_allumettes <= 0:
-            if gagnant_dernier:
+            if gagnant_dernier: #Si gagnant dernier est True, attribu le joueur 1 à gagnant, sinon, on attribu le joueur 2/IA à gagnant
                 gagnant = "Joueur 1"
             else:
                 gagnant = "Joueur 2" if not ia_joueur_2 else "IA"
@@ -127,15 +127,15 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
             break
         
         #Tour du joueur 2 / de l'IA
-        if ia_joueur_2:
+        if ia_joueur_2: 
             sleep(randint(1, 2))
-            nombre_allumettes -= prise_ia(nombre_allumettes, gagnant_dernier)
+            nombre_allumettes -= prise_ia(nombre_allumettes, gagnant_dernier) #on diminue le nombre d'allumettes par l'entier qui sort de prise ia
         else:
-            nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre? ", 1, 3)
+            nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre ? ", 1, 3) #Ou alors on pose la question au joueur 2
         afficher_jeu(nombre_allumettes)
         
         #Vérifie si J2 a gagner
-        if nombre_allumettes <= 0:
+        if nombre_allumettes <= 0: #Ici, inverssement à avant, on attribu gagnant à joueur 2/IA, ou alors à joueur 1, selon gagnant dernier
             if gagnant_dernier:
                 gagnant = "Joueur 2" if not ia_joueur_2 else "IA"
             else:
@@ -144,7 +144,7 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
             break
 
     #Affiche le gagnant
-    print(gagnant + " a gagner !")
+    print(gagnant + " a gagner !") #On annonce le gagnant
 
 
 def creer_menu():
@@ -272,17 +272,17 @@ def jouer():
     
     while True:
         # paramètres de la partie
-        ia_joueur_2 = reponse_oui_non("Voulez-vous jouer contre la machine ?")
+        ia_joueur_2 = reponse_oui_non("Voulez-vous jouer contre la machine ? ")
         gagnant_dernier = reponse_oui_non(
-            "Le gagnant est-il celui qui prend la dernière allumette ?")
-        nombre_allumettes = reponse_entier("Avec combien d'allumettes voulez-vous jouer ?", 1, 100)
+            "Le gagnant est-il celui qui prend la dernière allumette ? ")
+        nombre_allumettes = reponse_entier("Avec combien d'allumettes voulez-vous jouer ? ", 1, 100)
 
         # lancement de la partie
         partie(nombre_allumettes, gagnant_dernier, ia_joueur_2)
 
         # on rejoue ?
         afficher_jeu(nombre_allumettes)
-        if not reponse_oui_non("Voulez-vous rejouer ?"):
+        if not reponse_oui_non("Voulez-vous rejouer ? "):
             break
 
 
