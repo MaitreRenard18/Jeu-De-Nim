@@ -111,7 +111,6 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
                   ou l'utilisateur (False).
     :type ia_joueur_2: bool.
     """
-<<<<<<< HEAD
     #Demanque qui joue
     if ia_joueur_2: 
         tour_j1 = reponse_oui_non("Voulez-vous jouer en premier")
@@ -119,11 +118,6 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
         tour_j1 = True
     
     gagnant = "Personne"
-=======
-
-    tour_j1 = reponse_oui_non("Voulez-vous jouer en premier ? ") #Je renseigne dans une variable le joueur qui commencera à jouer.
-    gagnant = "Personne" #Je créer une variable pour renseigner le nom du gagnant.
->>>>>>> e23dd70b501d462e1bd509c6396a5e010f351f93
 
     afficher_jeu(nombre_allumettes)
     
@@ -131,7 +125,6 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
         if ia_joueur_2:
             sleep(randint(1, 2))
             nombre_allumettes -= prise_ia(nombre_allumettes, gagnant_dernier)
-<<<<<<< HEAD
         else:
             nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre? ", 1, 3)
 
@@ -162,38 +155,6 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
             if ia_joueur_2:
                 sleep(randint(1, 2))
                 nombre_allumettes -= prise_ia(nombre_allumettes, gagnant_dernier)
-=======
-        else: #Si on joue contre une humain, on pose la question au joueur 2, et le nombre d'allumettes est diminué de l'entier choisi
-            nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre ? ", 1, 3)
-        afficher_jeu(nombre_allumettes)
-
-    while True:
-        #Tour du joueur 1
-        nombre_allumettes -= reponse_entier("Joueur 1 : Combien d'allumettes voulez-vous prendre ? ", 1, 3) #On pose la question au joueur 1, et le nb d'allumette est diminué
-        afficher_jeu(nombre_allumettes)
-        
-        #Vérifie si J1 a gagner
-        if nombre_allumettes <= 0:
-            if gagnant_dernier: #Si gagnant dernier est True, attribu le joueur 1 à gagnant, sinon, on attribu le joueur 2/IA à gagnant
-                gagnant = "Joueur 1"
-            else:
-                gagnant = "Joueur 2" if not ia_joueur_2 else "IA"
-                
-            break
-        
-        #Tour du joueur 2 / de l'IA
-        if ia_joueur_2: 
-            sleep(randint(1, 2))
-            nombre_allumettes -= prise_ia(nombre_allumettes, gagnant_dernier) #on diminue le nombre d'allumettes par l'entier qui sort de prise ia
-        else:
-            nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre ? ", 1, 3) #Ou alors on pose la question au joueur 2
-        afficher_jeu(nombre_allumettes)
-        
-        #Vérifie si J2 a gagner
-        if nombre_allumettes <= 0: #Ici, inverssement à avant, on attribu gagnant à joueur 2/IA, ou alors à joueur 1, selon gagnant dernier
-            if gagnant_dernier:
-                gagnant = "Joueur 2" if not ia_joueur_2 else "IA"
->>>>>>> e23dd70b501d462e1bd509c6396a5e010f351f93
             else:
                 nombre_allumettes -= reponse_entier("Joueur 2 : Combien d'allumettes voulez-vous prendre? ", 1, 3)
             afficher_jeu(nombre_allumettes)
@@ -208,7 +169,6 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
                 break
 
     #Affiche le gagnant
-<<<<<<< HEAD
     wn.addshape(str(os.getcwd()) + "\\textures\\" + gagnant + ".gif")
     titre.shape(str(os.getcwd()) + "\\textures\\" + gagnant + ".gif")
 
@@ -216,9 +176,6 @@ def partie(nombre_allumettes, gagnant_dernier, ia_joueur_2):
     global menu_boutons
     afficher_boutons(menu_boutons)
 
-=======
-    print(gagnant + " a gagner !") #On annonce le gagnant
->>>>>>> e23dd70b501d462e1bd509c6396a5e010f351f93
 
 
 def creer_menu():
@@ -365,26 +322,8 @@ def jouer():
     On peut lancer autant d'instances du jeu que l'on souhaite.
     """
     
-<<<<<<< HEAD
     global skins
     skins = [file for file in os.listdir(str(os.getcwd()) + "\skins")]
-=======
-    while True:
-        # paramètres de la partie
-        ia_joueur_2 = reponse_oui_non("Voulez-vous jouer contre la machine ? ")
-        gagnant_dernier = reponse_oui_non(
-            "Le gagnant est-il celui qui prend la dernière allumette ? ")
-        nombre_allumettes = reponse_entier("Avec combien d'allumettes voulez-vous jouer ? ", 1, 100)
-
-        # lancement de la partie
-        partie(nombre_allumettes, gagnant_dernier, ia_joueur_2)
-
-        # on rejoue ?
-        afficher_jeu(nombre_allumettes)
-        if not reponse_oui_non("Voulez-vous rejouer ? "):
-            break
-
->>>>>>> e23dd70b501d462e1bd509c6396a5e010f351f93
 
     global skin_actuel
     skin_actuel = str(os.getcwd()) + "\skins\Allumette.gif"
@@ -417,10 +356,7 @@ def jouer():
     menu_boutons = creer_menu()
 
     turtle.mainloop()
-<<<<<<< HEAD
 
 
 if __name__ == "__main__":
     jouer()
-=======
->>>>>>> e23dd70b501d462e1bd509c6396a5e010f351f93
